@@ -21,13 +21,17 @@ namespace Snp.Sample.Web.Controllers
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
+
             return "value";
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] string value)
         {
+            if (string.IsNullOrWhiteSpace(value)) return BadRequest();
+
+            return Ok();
         }
 
         // PUT api/values/5
